@@ -63,23 +63,38 @@ h1 {
     justify-content: center;
     align-items: center;
     box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
+    position: relative;
 }
 
+/*.deck .card::before {
+    position: absolute;
+    height: 125px;
+    width: 125px;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: red;
+}*/
+
 .deck .card.open {
-    transform: rotateY(0);
+    /*transform: rotateY(0);*/
     background: #02b3e4;
     cursor: default;
+    font-size: 33px;
 }
 
 .deck .card.show {
-    font-size: 33px;
+    /*font-size: 33px;*/
 }
 
 .deck .card.match {
-    cursor: default;
+    /*cursor: default;*/
     background: #02ccba;
-    font-size: 33px;
+    /*font-size: 33px;*/
 }
+
+.deck .card.unmatch {}
 
 /*
  * Styles for the Score Panel
@@ -101,6 +116,7 @@ h1 {
 .score-panel .stars li {
     list-style: none;
     display: inline-block;
+    color: #FFDF00;
 }
 
 .score-panel .restart {
