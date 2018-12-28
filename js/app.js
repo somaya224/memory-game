@@ -16,24 +16,30 @@ const fAwsmClasses = ['fa-anchor',
                    'fa-leaf',
                    'fa-paper-plane-o'];
 
-// create unorderd list contains the cards
-let ul = document.createElement('ul');
-ul.classList.add('deck');
+// create the div deck contains the cards
+let deck = document.createElement('div');
+deck.classList.add('deck');
 fAwsmClasses.forEach(function(elem) {
-    let li = document.createElement('li');
-    let i = document.createElement('i');
+  let cardContainer = document.createElement('div');
+  let cardFront = document.createElement('div');
+  let cardBack = document.createElement('div');
+  let i = document.createElement('i');
 
-    li.classList.add('card')
-    i.classList.add('fa', elem);
+  cardContainer.classList.add('card-container');
+  cardBack.classList.add('card-back');
+  cardFront.classList.add('card-front');
+  i.classList.add('fa', elem);
 
-    li.appendChild(i);
-    ul.appendChild(li);
+  cardFront.appendChild(i);
+  cardContainer.appendChild(cardFront);
+  cardContainer.appendChild(cardBack);
+  deck.appendChild(cardContainer);
 });
 
 let divContainer = document.querySelector('.container');
-divContainer.appendChild(ul);
+divContainer.appendChild(deck);
 
-let cardsNodeList = ul.querySelectorAll('li');
+let cardsNodeList = deck.querySelectorAll('.card-container');
 // this return a nodelist which is immutable so we cant shuffle it
 // we need to convert it to an array using Array.from()
 let cardsArray = Array.from(cardsNodeList);
@@ -50,61 +56,75 @@ let cardsArray = Array.from(cardsNodeList);
     4. Each loop pass swap the current index value in the loop with (the last element the loop iterate)
 with index the random  index  (number) generated each loop.*/
 function shuffle(cardsArray) {
-    var currentIndex = cardsArray.length - 1, randomIndex, temporaryValue;
-    for (currentIndex; currentIndex > 0; currentIndex--) {
-        randomIndex = Math.floor(Math.random() * (currentIndex + 1));
-         temporaryValue = cardsArray[randomIndex];
-         cardsArray[randomIndex] = cardsArray[currentIndex];
-         cardsArray[currentIndex] = temporaryValue;
-    }
+  var currentIndex = cardsArray.length - 1, randomIndex, temporaryValue;
+  for (currentIndex; currentIndex > 0; currentIndex--) {
+    randomIndex = Math.floor(Math.random() * (currentIndex + 1));
+    temporaryValue = cardsArray[randomIndex];
+    cardsArray[randomIndex] = cardsArray[currentIndex];
+    cardsArray[currentIndex] = temporaryValue;
+  }
 }
+
 // suffle the card with the browser refresh
 shuffle(cardsArray)
-ul.innerHTML = '';
-cardsArray.forEach(c => ul.appendChild(c));
+deck.innerHTML = '';
+cardsArray.forEach(cardContainer => deck.appendChild(cardContainer));
 
 // suffle the card with the div.restart button
 let restart = document.querySelector('.restart');
 restart.onclick = function() {
-    window.location.reload();
+  window.location.reload();
 };
 
+let cards = document.querySelectorAll('.card-container');
+  let count = 0;
+  let twoCardsArr = [];
+cards.forEach(function(card) {
+  card.addEventListener('click', function(e){
+    count++;
+
+    // show the card on click
+    let parent = e.target.parentElement;
+    let cardContent = parent.querySelector('.card-front');
+    cardContent.classList.add('card-front-open');
+    let cardWall = parent.querySelector('.card-back');
+    cardWall.classList.add('card-back-close');
+    let moves = document.querySelector('.moves');
+    twoCardsArr.push(parent);
+
+    // handleing the stars rate
+    let stars = document.querySelectorAll('.fa-star');
+    if(count === 20) {
+      stars[2].classList.remove('fa-star');
+      stars[2].classList.add('fa-star-o');
+    } else if(count === 30) {
+      stars[1].classList.remove('fa-star');
+      stars[1].classList.add('fa-star-o');
+    }
 
 
-/* show the card on click
-=========================
-*/
+    if(count % 2 === 0) {
+      // hangling moves number
+      moves.innerHTML = count / 2;
+      // Adding class match to  every two identical cards
+      if(twoCardsArr.length === 2) {
+        if(twoCardsArr[0].querySelector('i').classList.value === twoCardsArr[1].querySelector('i').classList.value){
+          twoCardsArr.forEach(card => card.querySelector('.card-front-open').classList.add('match'));
+          // clear moves
+          twoCardsArr = [];
+        } else {
+          // Adding class not-match to the every two different cards
+          twoCardsArr.forEach(card => card.querySelector('.card-front-open').classList.add('not-match'));
 
-let cards = document.querySelectorAll('.card');
-let span = document.querySelector('.moves');
-let moves, comparisonArr;
-let stars = document.querySelectorAll('.stars i');
-cards.forEach(function(li, index) {
-    li.onclick = function() {
-        li.classList.add('open');
-        if(index === 0){
-            moves = 0;
-        } else if(index % 2 !== 0) {
-            moves++;
-            span.textContent = moves;
-            if(moves === 10 ) {
-                stars[2].classList.remove('fa-star');
-                stars[2].classList.add('fa-star-o');
-            } else if(moves === 15) {
-                stars[1].classList.remove('fa-star');
-                stars[1].classList.add('fa-star-o');
-            }
+          // Close cards after 400ms by removing class card-front-open and also remove class not-match
+          window.setTimeout(function() {
+            twoCardsArr.forEach(card => card.querySelector('.card-front-open').classList.remove('card-front-open', 'not-match'));
+            twoCardsArr.forEach(card => card.querySelector('.card-back-close').classList.remove('card-back-close', 'not-match'));
+            // clear moves
+            twoCardsArr = [];
+          }, 400);
         }
-    };
+      }
+    }
+  });
 });
-
-
-
-
-
-
-
-
-
-
-
