@@ -30,9 +30,9 @@ fAwsmClasses.forEach(function(elem) {
   cardFront.classList.add('card-front');
   i.classList.add('fa', elem);
 
+  cardContainer.appendChild(cardBack);
   cardFront.appendChild(i);
   cardContainer.appendChild(cardFront);
-  cardContainer.appendChild(cardBack);
   deck.appendChild(cardContainer);
 });
 
@@ -79,10 +79,13 @@ restart.onclick = function() {
 let cards = document.querySelectorAll('.card-container');
   let count = 0;
   let twoCardsArr = [];
+  let match = 0;
+// loop through all cards to addAventListener
 cards.forEach(function(card) {
-  card.addEventListener('click', function(e){
+  // name of handler is click and event handler is Respond function
+  card.addEventListener('click', Respond);
+  function Respond(e) {
     count++;
-
     // show the card on click
     let parent = e.target.parentElement;
     let cardContent = parent.querySelector('.card-front');
@@ -101,21 +104,52 @@ cards.forEach(function(card) {
       stars[1].classList.remove('fa-star');
       stars[1].classList.add('fa-star-o');
     }
-
-
     if(count % 2 === 0) {
       // hangling moves number
       moves.innerHTML = count / 2;
       // Adding class match to  every two identical cards
+      // And remove the event handler from the two matched elements
       if(twoCardsArr.length === 2) {
         if(twoCardsArr[0].querySelector('i').classList.value === twoCardsArr[1].querySelector('i').classList.value){
-          twoCardsArr.forEach(card => card.querySelector('.card-front-open').classList.add('match'));
-          // clear moves
+          twoCardsArr.forEach(function(card){
+            card.querySelector('.card-front-open').classList.add('match');
+            card.removeEventListener('click', Respond);
+          });
           twoCardsArr = [];
+          match++;
+          if(match === 8) {
+            document.querySelector('.container').remove();
+            // document.body.container.remove();
+            let congrats = document.createElement('div');
+            divContainer.appendChild(congrats);
+            congrats.classList.add('congrats');
+            let congMessage = document.createElement('h1');
+            congMessage.classList.add('congMessage')
+            congMessage.innerText = 'Congratulations! You Won!';
+            congrats.appendChild(congMessage);
+            let congDetails = document.createElement('p');
+            congDetails.classList.add('details');
+            console.log(moves.innerText);
+            console.log(stars.length);
+            congrats.appendChild(congDetails);
+            // congDetails.innerText = "kjjhhjhfhj";
+            congDetails.innerText = `With ${moves.innerText} Moves and ${stars.length} Stars.`;
+            let cheer = document.createElement('p');
+            cheer.classList.add('details');
+            cheer.innerText = 'Wooooooo!';
+            congrats.appendChild(cheer);
+            let repeatBtn = document.createElement('div');
+            repeatBtn.classList.add('repeat');
+            repeatBtn.innerText = 'Play again!';
+            congrats.appendChild(repeatBtn);
+            document.body.appendChild(congrats);
+            repeatBtn.onclick = function() {
+              window.location.reload();
+            };
+          }
         } else {
           // Adding class not-match to the every two different cards
           twoCardsArr.forEach(card => card.querySelector('.card-front-open').classList.add('not-match'));
-
           // Close cards after 400ms by removing class card-front-open and also remove class not-match
           window.setTimeout(function() {
             twoCardsArr.forEach(card => card.querySelector('.card-front-open').classList.remove('card-front-open', 'not-match'));
@@ -126,5 +160,6 @@ cards.forEach(function(card) {
         }
       }
     }
-  });
+  }
 });
+

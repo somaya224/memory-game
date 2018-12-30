@@ -2,9 +2,7 @@ html {
     box-sizing: border-box;
 }
 
-*,
-*::before,
-*::after {
+* {
     box-sizing: inherit;
 }
 
@@ -113,6 +111,7 @@ h1 {
 
 .deck .card-container .card-front.match {
     background: #02ccba;
+    pointer-events: none;
     animation-name: rubberBand;
     animation-duration: 1s;
 }
@@ -150,3 +149,36 @@ h1 {
     float: right;
     cursor: pointer;
 }
+
+.congrats {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 0;
+}
+
+.congMessage {
+    font-weight: 700;
+    font-size: 1.2em;
+    padding: 0;
+}
+
+.details {
+    color: rgba(0, 0, 0, 0.8);
+    margin: 0;
+}
+
+.repeat {
+    width: 130px;
+    padding: 10px;
+    color: #fff;
+    font-size: 1em;
+    text-align: center;
+    cursor: pointer;
+    background-color: #2F8;
+    margin-top:  10px;
+    border-radius: 5px;
+}
+
