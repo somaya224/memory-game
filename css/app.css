@@ -1,241 +1,263 @@
 html {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 * {
-    box-sizing: border-box;
-    font-family:'Open Sans', sans-serif;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  font-family: 'Open Sans', sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
-/*html,
 body {
-    width: 100%;
-}*/
-
-body {
-    background: #ffffff url('../img/geometry2.png'); /* Background pattern from Subtle Patterns */
-    background-size: contain;
+  background: #ffffff url('../img/geometry2.png');
+  background-size: contain;
 }
 
 .container {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 h1,
 p,
-span{
-    font-weight: 300;
+span {
+  font-weight: 300;
 }
 
 p,
-span{
-    color: #676C6C;
+span {
+  color: #676C6C;
 }
 
 .score-panel {
-    max-width: 100%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-direction: row;
+  max-width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
 }
+
 /*
  * Styles for the deck of cards
  */
-
 .deck {
-    width: 100%;
-    min-height: 680px;
-    background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
-    border-radius: 10px;
-    box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-around;
-    align-items: center;
-    padding: 0 10px 10px 10px;
+  width: 100%;
+  min-height: 680px;
+  background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
+  border-radius: 10px;
+  box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0 10px 10px 10px;
 }
 
 .deck .card-container {
-    width: 45%;
-    height: 45vw;
-    margin-top: 20px;
-    cursor: pointer;
-    position: relative;
+  width: 45%;
+  height: 45vw;
+  margin-top: 20px;
+  cursor: pointer;
+  position: relative;
 }
 
 .deck .card-container .card-front,
 .deck .card-container .card-back {
-    height: 100%;
-    width: 100%;
-    border-radius: 8px;
+  height: 100%;
+  width: 100%;
+  border-radius: 8px;
 }
 
 .deck .card-container .card-front {
-    position: absolute;
-    background: #f00;
-    color: #fff;
-    font-size: 33px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
-    transform: rotateY(180deg);
-    backface-visibility: hidden;
-    transition: transform 0.1s linear;
+  position: absolute;
+  background: #f00;
+  color: #fff;
+  font-size: 33px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
+  transform: rotateY(180deg);
+  backface-visibility: hidden;
+  transition: transform 0.1s linear;
 }
+
 .deck .card-container .card-back {
-    position: absolute;
-    background: #2e3d49;
-    box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
-    transform: rotateY(0);
-    backface-visibility: hidden;
-    transition: transform 0.1s linear;
+  position: absolute;
+  background: #2e3d49;
+  box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
+  transform: rotateY(0);
+  backface-visibility: hidden;
+  transition: transform 0.1s linear;
 }
 
 .deck .card-container .card-front-open {
-    background: #02b3e4;
-    cursor: default;
-    transform: rotateY(0);
-    transition: transform 0.1s linear;
+  background: #02b3e4;
+  cursor: default;
+  transform: rotateY(0);
+  transition: transform 0.1s linear;
 }
 
 .deck .card-container .card-back-close {
-    cursor: default;
-    transform: rotateY(180deg);
-    transition: transform 0.1sec linear;
+  cursor: default;
+  transform: rotateY(180deg);
+  transition: transform 0.1sec linear;
 }
 
-.deck .card-container .card-front.not-match{
-    background: red;
-    animation-name: wobble;
-    animation-duration: 300ms;
+.deck .card-container .card-front.not-match {
+  background: red;
+  animation-name: wobble;
+  animation-duration: 300ms;
 }
+
 @keyframes wobble {
-    0% {transform: translateX(0%);}
-  50% {transform: translateX(-25%) rotate(-5deg);}
-  75% {transform: translateX(25%) rotate(5deg);}
-  100% {transform: translateX(0%);}
+  0% {
+    transform: translateX(0%);
+  }
+
+  50% {
+    transform: translateX(-25%) rotate(-5deg);
+  }
+
+  75% {
+    transform: translateX(25%) rotate(5deg);
+  }
+
+  100% {
+    transform: translateX(0%);
+  }
 }
 
 .deck .card-container .card-front.match {
-    background: #02ccba;
-    pointer-events: none;
-    animation-name: rubberBand;
-    animation-duration: 1s;
+  background: #02ccba;
+  pointer-events: none;
+  animation-name: rubberBand;
+  animation-duration: 1s;
 }
+
 @keyframes rubberBand {
-  0%, 100% {transform: scale(1);}
-  25% {transform: scaleX(1.25) scaleY(0.75);}
-  50% {transform: scaleX(0.75) scaleY(1.25);}
-  75% {transform: scaleX(1.15) scaleY(0.85);}
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  25% {
+    transform: scaleX(1.25) scaleY(0.75);
+  }
+
+  50% {
+    transform: scaleX(0.75) scaleY(1.25);
+  }
+
+  75% {
+    transform: scaleX(1.15) scaleY(0.85);
+  }
 }
 
 /*
  * Styles for the Score Panel
  */
-
 .score-panel {
-    text-align: left;
-    width: 345px;
-    margin-bottom: 10px;
+  text-align: left;
+  width: 345px;
+  margin-bottom: 10px;
 }
 
 .score-panel .stars {
-    margin: 0;
-    padding: 0;
-    display: inline-block;
-    margin: 0 5px 0 0;
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+  margin: 0 5px 0 0;
 }
 
 .score-panel .stars li {
-    list-style: none;
-    display: inline-block;
-    color: #FFDF00;
+  list-style: none;
+  display: inline-block;
+  color: #FFDF00;
 }
 
 .score-panel .restart {
-    float: right;
-    cursor: pointer;
+  float: right;
+  cursor: pointer;
 }
 
 .loader {
-    border: 3px solid #f0f0f0;
-    border-top: 3px solid #4BF;
-    color: #4BF;
-    border-radius: 50%;
-    width: 75px;
-    height: 75px;
-    position: relative;
-    animation: load 0.5s linear forwards;
+  border: 3px solid #f0f0f0;
+  border-top: 3px solid #4BF;
+  color: #4BF;
+  border-radius: 50%;
+  width: 75px;
+  height: 75px;
+  position: relative;
+  animation: load 0.5s linear forwards;
 }
 
 @keyframes load {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-        border-top: 3px solid #f0f0f0;
-    }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+    border-top: 3px solid #f0f0f0;
+  }
 }
 
 .tick {
-    width: 75px;
-    height: 75px;
-    border-radius: 50%;
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #4BF;
-    top: -3px;
-    left: -3px;
-    padding: 0;
-    font-size: 0;
-    font-weight: 300;
-    animation: tick 0.5s linear 0.5s forwards;
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #4BF;
+  top: -3px;
+  left: -3px;
+  padding: 0;
+  font-size: 0;
+  font-weight: 300;
+  animation: tick 0.5s linear 0.5s forwards;
 }
 
 @keyframes tick {
-    0% {
-        font-size: 0;
-    }
-    100% {
-        font-weight: 300;
-        font-size: 40px;
-    }
+  0% {
+    font-size: 0;
+  }
+
+  100% {
+    font-weight: 300;
+    font-size: 40px;
+  }
 }
 
 .congrats {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 0;
 }
 
 .congMessage {
-    font-size: 1.2em;
-    padding: 0;
+  font-size: 1.2em;
+  padding: 0;
 }
 
 .repeat {
-    width: 130px;
-    padding: 10px;
-    color: #fff;
-    font-size: 1em;
-    text-align: center;
-    cursor: pointer;
-    background-color: #4BF;
-    margin-top:  10px;
-    border-radius: 5px;
+  width: 130px;
+  padding: 10px;
+  color: #fff;
+  font-size: 1em;
+  text-align: center;
+  cursor: pointer;
+  background-color: #4BF;
+  margin-top: 10px;
+  border-radius: 5px;
 }
-
