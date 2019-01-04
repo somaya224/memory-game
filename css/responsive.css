@@ -1,0 +1,27 @@
+@media screen and (min-width: 550px) {
+    .deck {
+        /*width: 660px;*/
+        padding: 32px;
+        /*margin: 0 0 3em;*/
+    }
+
+   .deck .card-container {
+    /*width: 125px;
+    height: 125px;*/
+    width: 22%;
+    height: 22vw;
+    margin-top: 0;
+}
+
+@media screen and (min-width: 660px) {
+    .deck {
+        width: 660px;
+        padding: 32px;
+        margin: 0 0 3em;
+    }
+
+    .deck .card-container {
+        width: 125px;
+        height: 125px;
+    }
+}
