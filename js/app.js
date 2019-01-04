@@ -228,7 +228,7 @@ function respond(e) {
       deckFragment.appendChild(cheer);
       deckFragment.appendChild(repeatBtn);
       congrats.appendChild(deckFragment);
-    }, 1000);
+    }, 400);
 
     document.body.appendChild(congrats);
     repeatBtn.onclick = function() {
