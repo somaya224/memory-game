@@ -6,4 +6,4 @@
 * If the two cards match, both cards will stay opened.
 * If the two cards do not match, both cards will be closed again.
 * The game ends once all cards have been correctly matched.<br>
-Give it a try <a href="">here</a>
+Give it a try <a href="https://somaya224.github.io/memory-game/">here</a>
