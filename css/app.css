@@ -30,15 +30,7 @@ span {
 
 p,
 span {
-  color: #676C6C;
-}
-
-.score-panel {
-  max-width: 100%;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  flex-direction: row;
+  color: #676c6c;
 }
 
 /*
@@ -74,7 +66,6 @@ span {
 
 .deck .card-container .card-front {
   position: absolute;
-  background: #f00;
   color: #fff;
   font-size: 33px;
   display: flex;
@@ -109,7 +100,7 @@ span {
 }
 
 .deck .card-container .card-front.not-match {
-  background: red;
+  background: #f00;
   animation-name: wobble;
   animation-duration: 300ms;
 }
@@ -163,9 +154,14 @@ span {
  * Styles for the Score Panel
  */
 .score-panel {
+  max-width: 100%;
   text-align: left;
   width: 345px;
   margin-bottom: 10px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
 }
 
 .score-panel .stars {
@@ -178,7 +174,7 @@ span {
 .score-panel .stars li {
   list-style: none;
   display: inline-block;
-  color: #FFDF00;
+  color: #ffdf00;
 }
 
 .score-panel .restart {
@@ -188,8 +184,8 @@ span {
 
 .loader {
   border: 3px solid #f0f0f0;
-  border-top: 3px solid #4BF;
-  color: #4BF;
+  border-top: 3px solid #4bf;
+  color: #4bf;
   border-radius: 50%;
   width: 75px;
   height: 75px;
@@ -204,7 +200,7 @@ span {
 
   100% {
     transform: rotate(360deg);
-    border-top: 3px solid #f0f0f0;
+    border: 3px solid #4bf;
   }
 }
 
@@ -216,7 +212,7 @@ span {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #4BF;
+  color: #4bf;
   top: -3px;
   left: -3px;
   padding: 0;
@@ -257,7 +253,7 @@ span {
   font-size: 1em;
   text-align: center;
   cursor: pointer;
-  background-color: #4BF;
+  background-color: #4bf;
   margin-top: 10px;
   border-radius: 5px;
 }
